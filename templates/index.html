@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Canteen Stall Preorder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Canteen Stall Preorder</h1>
+  </header>
+
+  <section>
+    <form action="/order" method="POST">
+      <label for="stall">Stall Number: </label>
+      <select id="stall" name="stall" required>
+        <option value="0">(choose a stall)</option>
+        <option value="1">Stall 1</option>
+        <option value="2">Stall 2</option>
+        <option value="3">Stall 3</option>
+        <option value="4">Stall 4</option>
+        <option value="5">Stall 5</option>
+        <option value="6">Stall 6</option>
+        <option value="7">Stall 7</option>
+        <option value="8">Stall 8</option>
+      </select><br><br>
+      <label for="menu">Menu: </label>
+      <select id="menu" name="menu" required></select><br><br>
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" name="quantity" max="6" required><br><br>
+      <label for="requests">Additional Requests: </label>
+      <textarea id="requests" name="requests" rows="4", cols="50"></textarea>
+      
+      <input type="submit" value="Submit order">
+    </form>
+  </section>
+
+  <script>
+    const stallSelect = document.getElementById('stall');
+    const menuSelect = document.getElementById('menu');
+    const stallMenus = {
+    "0": ["(Choose a stall)"],  // Add missing comma here
+    "1": ["Canned Drink ($1.00)", "Bottled Drink ($1.20)", "Iced Milo ($1.10)"],
+    "2": ["Waffles ($1.50)", "Prata Rolls ($1.50)"],
+    "3": ["White Chicken Rice ($3.50)", "Smoky BBQ Chicken Rice ($3.50)", "Chicken Cutlet Rice ($3.50)"]
+    };
+
+    stallSelect.addEventListener('change', () => {
+      const selectedStall = stallSelect.value;
+      const menuOptions = stallMenus[selectedStall];
+      menuSelect.innerHTML = ''; // Clear existing options
+      menuOptions.forEach(option => {
+        const newOption = document.createElement('option');
+        newOption.value = option;
+        newOption.text = option;
+        menuSelect.appendChild(newOption);
+      });
+    });
+  </script>
+</body>
+</html>
