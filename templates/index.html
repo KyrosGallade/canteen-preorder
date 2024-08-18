@@ -10,6 +10,8 @@
     <h1>Canteen Stall Preorder</h1>
   </header>
 
+  <hr>
+
   <section>
     <form action="/order" method="POST">
       <label for="stall">Stall Number: </label>
@@ -58,7 +60,7 @@
     stallSelect.addEventListener('change', () => {
       const selectedStall = stallSelect.value;
       const menuOptions = stallMenus[selectedStall];
-      menuSelect.innerHTML = ''; // Clear existing options
+      menuSelect.innerHTML = '';
       menuOptions.forEach(option => {
         const newOption = document.createElement('option');
         newOption.value = option;

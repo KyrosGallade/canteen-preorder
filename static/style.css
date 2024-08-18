@@ -1,4 +1,4 @@
-html {
+body, html {
   font-family: "Segoe UI";
   background-color: #b8e3f2;
   text-align: center;
@@ -7,4 +7,8 @@ html {
 
 table, th, td {
   border: 1px black solid;
+}
+
+table {
+  width: 100%
 }
