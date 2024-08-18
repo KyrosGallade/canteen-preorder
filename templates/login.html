@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login For Stall Owners</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Login For Stall Owners</h1>
+  </header>
+
+  <section>
+    <form action="/owner" method="POST">
+      <label for="username">Username: </label>
+      <input type="username" id="username" name="username" required><br><br>
+      <label for="password">Password: </label>
+      <input type="password" id="password" name="password" required<br><br>
+
+      <input type="submit" value="Login">
+    </form>
+  </section>
+
+  <a href="/">Return to order page</a>
+</body>
+</html>

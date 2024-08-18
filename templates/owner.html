@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Orders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Submitted Orders</h1>
+  </header>
+
+  <section>
+    <table>
+      <tr>
+        <th>Order ID</th>
+        <th>Ordered Item</th>
+        <th>Quantity</th>
+        <th>Additional Requests</th>
+        <th>Mark As Complete</th>
+      </tr>
+      {% for order in stall_orders %}
+      <tr>
+        <td>{{ order[0] }}</td>
+        <td>{{ order[2] }}</td>
+        <td>{{ order[3] }}</td>
+        <td>{{ order[4] }}</td>
+        <td>
+          <form action="/complete" method="POST">
+            <input type="hidden" name="order_id" value="{{ order[0] }}">
+            <input type="hidden" name="stall" value="{{ order[1] }}">
+            <input type="submit" value="Mark as Complete">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </section>
+
+  <form action="/all_orders" method="POST">
+    <input type="hidden" name="stall" value="{{ stall }}">
+    <input type="submit" value="View All Orders">
+  </form>
+</body>
+</html>
