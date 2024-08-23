@@ -29,9 +29,9 @@
       <label for="menu">Menu: </label>
       <select id="menu" name="menu" required></select><br><br>
       <label for="quantity">Quantity</label>
-      <input type="number" id="quantity" name="quantity" max="6" required><br><br>
+      <input type="number" id="quantity" name="quantity" min="1" max="6" required><br><br>
       <label for="requests">Additional Requests: </label>
-      <textarea id="requests" name="requests" rows="4", cols="50"></textarea><br><br>
+      <textarea id="requests" name="requests" rows="4", cols="50" maxlength="100"></textarea><br><br>
       
       <input type="submit" value="Submit order">
     </form>
@@ -50,11 +50,12 @@
     "1": ["Canned Drink ($1.00)", "Bottled Drink ($1.20)", "Iced Milo ($1.10)"],
     "2": ["Waffles ($1.50)", "Prata Rolls ($1.50)"],
     "3": ["White Chicken Rice ($3.50)", "Smoky BBQ Chicken Rice ($3.50)", "Chicken Cutlet Rice ($3.50)"],
-    "4": ["Placeholder"],
-    "5": ["Placeholder"],
-    "6": ["Placeholder"],
-    "7": ["Placeholder"],
-    "8": ["Placeholder"],
+    "4": ["Beef Tacos", "Chicken Quesadillas", "Veggie Nachos", "Guacamole & Chips", "Lemonade"],
+    "5": ["Caesar Salad", "Grilled Chicken Wrap", "Fruit Smoothie Bowl", "Yogurt Parfait", "Fresh Orange Juice"],
+    "6": ["Chocolate Chip Cookies", "Brownies", "Cupcakes (Vanilla, Chocolate)", "Ice Cream Sundae", "Hot Chocolate"],
+    "7": ["Spaghetti Bolognese", "Fettuccine Alfredo", "Macaroni & Cheese", "Garlic Bread", "Iced Tea"],
+    "8": ["California Roll", "Spicy Tuna Roll", "Veggie Sushi Platter", "Edamame", "Green Tea Ice Cream"]
+      }
     };
 
     stallSelect.addEventListener('change', () => {

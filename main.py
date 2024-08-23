@@ -6,10 +6,10 @@ app = Flask(__name__)
 def insert_into_db(stall, item, quantity, requests):
     conn = sqlite3.connect("orders.db")
     cursor = conn.cursor()
-    cursor.execute(f"""
+    cursor.execute("""
     INSERT INTO OrderDetail (Order_Stall, Order_Item, Quantity, Requests, COMPLETED) 
-    VALUES ({stall}, '{item}', {quantity}, '{requests}', 'NO');
-    """)
+    VALUES (?, '?', '?', '?' 'NO');
+    """, ({stall}, {item}, {quantity}, {requests}))
     conn.commit()
     conn.close()
     return cursor.lastrowid
@@ -48,11 +48,11 @@ def owner():
             stall = owner[0]
             conn = sqlite3.connect("orders.db")
             cursor = conn.cursor()
-            cursor.execute(f"""
+            cursor.execute("""
             SELECT Order_ID, Order_Stall, Order_Item, Quantity, Requests
             FROM OrderDetail
-            WHERE COMPLETED = 'NO' AND Order_Stall = {stall};
-            """)
+            WHERE COMPLETED = 'NO' AND Order_Stall = ?;
+            """, (stall,))
             stall_orders = cursor.fetchall()
             conn.close()
             return render_template("owner.html", stall_orders=stall_orders, stall=stall)
@@ -74,18 +74,17 @@ def complete():
 
     conn = sqlite3.connect("orders.db")
     cursor = conn.cursor()
-    cursor.execute(f"""
+    cursor.execute("""
     SELECT Order_ID, Order_Stall, Order_Item, Quantity, Requests
     FROM OrderDetail
-    WHERE COMPLETED = 'NO' AND Order_Stall = {stall};
-    """)
+    WHERE COMPLETED = 'NO' AND Order_Stall = ?;
+    """, (stall,))
     stall_orders = cursor.fetchall()
     conn.close()
     return render_template("owner.html", stall_orders=stall_orders)
 
 @app.route("/all_orders", methods=["POST"])
 def all_orders():
-    stall = request.form.get("stall")
     conn = sqlite3.connect("orders.db")
     cursor = conn.cursor()
     cursor.execute("""
