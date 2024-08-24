@@ -8,8 +8,8 @@ def insert_into_db(stall, item, quantity, requests):
     cursor = conn.cursor()
     cursor.execute("""
     INSERT INTO OrderDetail (Order_Stall, Order_Item, Quantity, Requests, COMPLETED) 
-    VALUES (?, '?', '?', '?' 'NO');
-    """, ({stall}, {item}, {quantity}, {requests}))
+    VALUES (?, ?, ?, ?, 'NO');
+    """, (stall, item, quantity, requests))
     conn.commit()
     conn.close()
     return cursor.lastrowid
@@ -64,11 +64,11 @@ def complete():
     stall = request.form.get("stall")
     conn = sqlite3.connect("orders.db")
     cursor = conn.cursor()
-    cursor.execute(f"""
+    cursor.execute("""
     UPDATE OrderDetail SET
         COMPLETED = 'YES'
-    WHERE Order_ID = {order_id};
-    """)
+    WHERE Order_ID = ?;
+    """, (order_id,))
     conn.commit()
     conn.close()
 
