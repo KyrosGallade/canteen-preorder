@@ -36,7 +36,7 @@ def owner():
     conn = sqlite3.connect("orders.db")
     cursor = conn.cursor()
     cursor.execute("""
-    SELECT StallOwned, AccountUsername, AccountPassword
+    SELECT *
     FROM LoginDetail;
     """)
     list_of_owners = cursor.fetchall()
@@ -49,7 +49,7 @@ def owner():
             conn = sqlite3.connect("orders.db")
             cursor = conn.cursor()
             cursor.execute("""
-            SELECT Order_ID, Order_Stall, Order_Item, Quantity, Requests
+            SELECT *
             FROM OrderDetail
             WHERE COMPLETED = 'NO' AND Order_Stall = ?;
             """, (stall,))
@@ -70,12 +70,8 @@ def complete():
     WHERE Order_ID = ?;
     """, (order_id,))
     conn.commit()
-    conn.close()
-
-    conn = sqlite3.connect("orders.db")
-    cursor = conn.cursor()
     cursor.execute("""
-    SELECT Order_ID, Order_Stall, Order_Item, Quantity, Requests
+    SELECT *
     FROM OrderDetail
     WHERE COMPLETED = 'NO' AND Order_Stall = ?;
     """, (stall,))
