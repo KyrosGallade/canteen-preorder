@@ -16,14 +16,16 @@
     <table>
       <tr>
         <th>Order ID</th>
+        <th>Stall Number</th>
         <th>Ordered Item</th>
         <th>Quantity</th>
         <th>Additional Requests</th>
-        <th>Completion Status</th>
+        <th>Completed Status</th>
       </tr>
       {% for order in list_of_orders %}
       <tr>
         <td>{{ order[0] }}</td>
+        <td>{{ order[1] }}</td>
         <td>{{ order[2] }}</td>
         <td>{{ order[3] }}</td>
         <td>{{ order[4] }}</td>
